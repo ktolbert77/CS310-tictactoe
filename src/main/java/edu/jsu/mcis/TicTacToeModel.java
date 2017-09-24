@@ -10,7 +10,7 @@ public class TicTacToeModel{
         
         X("X"), 
         O("O"), 
-        EMPTY(" ");
+        EMPTY("-");
 
         private String message;
         
@@ -57,7 +57,6 @@ public class TicTacToeModel{
     public TicTacToeModel() {
         
         /* No arguments (call main constructor; use default size) */
-        
         this(DEFAULT_WIDTH);
         
     }
@@ -72,12 +71,17 @@ public class TicTacToeModel{
         xTurn = true;
         
         /* Create grid (width x width) as a 2D Mark array */
-
-        /* INSERT YOUR CODE HERE */
-
+        grid = new Mark[width][width];
+        
         /* Initialize grid by filling every square with empty marks */
-
-        /* INSERT YOUR CODE HERE */
+        
+        for(int i = 0; i < width; i++) {
+			for(int j = 0; j < width; j++) {
+				grid[i][j] = Mark.EMPTY;
+			}
+		}
+				
+        
         
     }
 	
@@ -87,9 +91,8 @@ public class TicTacToeModel{
            location, but only if the location is valid and if the square is
            empty! */
         
-        /* INSERT YOUR CODE HERE */
+        
 
-        return false; /* remove this line! */
         
     }
 	
@@ -98,8 +101,6 @@ public class TicTacToeModel{
         /* Return true if specified location is within grid bounds */
         
         /* INSERT YOUR CODE HERE */
-
-        return false; /* remove this line! */
         
     }
 	
@@ -109,7 +110,6 @@ public class TicTacToeModel{
         
         /* INSERT YOUR CODE HERE */
 
-        return false; /* remove this line! */
             
     }
 	
