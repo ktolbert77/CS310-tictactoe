@@ -17,8 +17,8 @@ public class TicTacToeView {
         /* Print the board to the console (see examples) */
         
         System.out.print("  ");
-                for (int l = 0; l < model.getWidth(); l++)
-                    System.out.print(k);
+                for (int n = 0; n < model.getWidth(); n++)
+                    System.out.print(n);
                      System.out.println("\n");
                      
 				for (int i = 0; i <model.getWidth() ; i++) 
@@ -54,7 +54,8 @@ public class TicTacToeView {
 
         /* Display an error if input is invalid (see examples) */
 
-        /* INSERT YOUR CODE HERE */
+        System.out.println("Please re-enter a valid location");
+		
 
     }
 
