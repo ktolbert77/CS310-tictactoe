@@ -1,70 +1,92 @@
 package edu.jsu.mcis;
 
-public class TicTacToeView {
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-    private TicTacToeModel model;
-    
-    /* CONSTRUCTOR */
-	
-    public TicTacToeView(TicTacToeModel model) {
-        
-        this.model = model;
-        
-    }
-	
-    public void viewModel() {
-        
-        /* Print the board to the console (see examples) */
-        
-        System.out.print("  ");
-                for (int n = 0; n < model.getWidth(); n++)
-                    System.out.print(n);
-                     System.out.println("\n");
-                     
-				for (int i = 0; i <model.getWidth() ; i++) 
-               
-				{
-                    System.out.print(i + " " );
-                    for (int j = 0; j < model.getWidth() ; j++) 
-					{ 
-					if((model.getMark(i, j) == TicTacToeModel.Mark.EMPTY))
-						System.out.print("-");
-					else
-					   System.out.print(model.getMark(i,j));
-                   }
-                   System.out.println(); 
-				}
+public class TicTacToeView extends JPanel implements ActionListener {
+    
+    TicTacToeModel model;
 
-    }
+    private JButton[][] squares;
+    private JPanel squaresPanel;
+    private JLabel resultLabel;
 
-    public void showNextMovePrompt() {
+    public TicTacToeView(TicTacToeModel model) {
 
-        /* Display a prompt for the player's next move (see examples) */
+        this.model = model;
 
-        if(model.isXTurn())
-			System.out.println("Player 1(X) move: ");
-		else 
-			System.out.println("Player 2(O) move: ");
-		System.out.print("Enter the row and column numbers, seperated by a space: ");
-		
+        int width = model.getWidth();
 
-    }
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        squares = new JButton[width][width];
+        squaresPanel = new JPanel(new GridLayout(width,width));
+        resultLabel = new JLabel();
+        resultLabel.setName("ResultLabel");
+        
+        /* Loop through all rows and columns of the grid and: create a new
+           JButton and assign it to the current grid element, add "this"
+           (the View object) as the ActionListener, set the JButton's name
+           to "SquareXY" (where X is the row and Y is the column), set the
+           preferred size to 64x64 pixels, and add the new square to the
+           "squaresPanel" JPanel created earlier. */
+        
+        /* INSERT CODE HERE */
+        
+        add(squaresPanel);
+        add(resultLabel);
+        
+        resultLabel.setText("Welcome to Tic-Tac-Toe!");
 
-    public void showInputError() {
+    }
 
-        /* Display an error if input is invalid (see examples) */
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        
+        String name = ((JButton) event.getSource()).getName();
+        
+        /* Extract the ROW and COL from the string name (remember, the squares
+           should all be named "SquareXY", so the ROW should be extracted from
+           position 6 of this string, and the COL from position 7.  Remember to
+           convert both to Integers!) */
 
-        System.out.println("Please re-enter a valid location");
-		
+        /* INSERT CODE HERE */
+           
+        /* Call makeMark() to place the mark in the Model */
+        
+        /* INSERT CODE HERE */
 
-    }
+        /* Update the squares of the View using the "updateSquares()" method
+           (see below); this is the equivalent of re-printing the grid to the
+           console in Part One. */
 
-    public void showResult(String r) {
+        updateSquares();
 
-        /* Display final winner */
+        /* Clear the "showResult" label at the bottom of the View */
+        
+        showResult(" ");
+        
+        /* If the game is over (that is, if the "getResult()" method returns
+           a result other than Result.NONE), loop through all the JButtons in
+           the View and disable them to prevent further entries.  (Hint: the
+           JButton class provides a "setEnabled()" method for this.) */
+           
+        /* INSERT CODE HERE */
+        
+    }
+        
+    public void updateSquares() {
 
-        System.out.println(r + "!");
+        /* Loop through all of the rows and columns in the JButton grid and
+           reset the button text to match the corresponding marks as returned
+           by "getMark()" (to update the View to match the Model) */
+           
+        /* INSERT CODE HERE */
 
-    }
-	
+    }
+        
+    public void showResult(String message) {
+        resultLabel.setText(message);
+    }
+
 }
